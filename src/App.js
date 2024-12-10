@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css';
+import './App.scss';
 import AppRoutes from './Routes/AppRoutes';
 import Layout from './Components/Layout/Layout';
 import AuthRoutes from './Routes/AuthRoutes';

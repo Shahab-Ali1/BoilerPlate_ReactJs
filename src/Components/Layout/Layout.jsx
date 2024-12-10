@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../GenericFiles/Header';
-import Footer from '../GenericFiles/Footer';
-import Sidebar from '../GenericFiles/Sidebar';
+import Header from '../GenericFiles/UI/Header';
+import Sidebar from '../GenericFiles/UI/Sidebar';
+import Footer from '../GenericFiles/UI/Footer';
 
 function Layout({ children }) {
   return (
@@ -14,12 +14,12 @@ function Layout({ children }) {
       {/* Main Content Area */}
       <div className="flex flex-1">
         {/* Sidebar */}
-        <aside className="w-64 bg-gray-100 shadow-md hidden sm:block">
+        <aside className="sideBarWidth bg-gray-100 shadow-md hidden sm:block">
           <Sidebar />
         </aside>
 
         {/* Main Content */}
-        <main className="flex-1 p-6 bg-gray-50">
+        <main className="flex-1 p-2 bg-gray-50">
           {children}
         </main>
       </div>
