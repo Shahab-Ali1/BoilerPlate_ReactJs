@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { AgGrid, GenericTextField } from "../SharedComponents/SharedComponents";
+import { AgGrid, GenericModal, GenericTextField } from "../SharedComponents/SharedComponents";
 import GenericButton from "../GenericFiles/Common/Button/Button";
 import { successToast } from '../../Utils/Toast/Toast'
 
@@ -21,8 +21,10 @@ const Category = () => {
         { headerName: "A", field: "price", width: 150 },
         { headerName: "A", field: "electric", flex: 1 }
     ]);
+    const [isOpen, setIsOpen] = useState(false);
     const clickSave = () => {
         successToast("Record Saved Successfully")
+        setIsOpen(true);
     }
 
     return (
@@ -50,6 +52,28 @@ const Category = () => {
                     onClick={clickSave}
                 />
             </main>
+            {isOpen &&
+                <GenericModal
+                    title="Basic Modal"
+                    open={isOpen}
+                    onCancel={() => setIsOpen(false)}
+                    height={800}
+                    width={800}
+                >
+                    <div>
+                        <AgGrid
+                            Data={rowData}
+                            Columns={columnDefs}
+                            onRowClicked={(params) => console.log("Row clicked:", params.data)}
+                        />
+                    </div>
+                    <div className="mt-2 flex justifyEnd">
+                        <GenericButton
+                            text="Save"
+                        />
+                    </div>
+                </GenericModal>
+            }
         </div>
     );
 };
