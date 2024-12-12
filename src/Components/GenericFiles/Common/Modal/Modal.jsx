@@ -2,7 +2,7 @@ import { Modal } from 'antd';
 import React from 'react';
 import styles from "./Modal.module.css";
 
-export default function GenericModal({ children, title, open, onCancel, height, width }) {
+export default function GenericModal({ children, title, open, onCancel, height = "auto", width = "auto" }) {
     return (
         <div>
             <Modal
@@ -19,7 +19,7 @@ export default function GenericModal({ children, title, open, onCancel, height, 
                 height={height}
                 width={width}
             >
-                <div className={styles.modalContent}>
+                <div className={styles.modalContent} style={{ height: height }}>
                     {children}
 
                 </div>

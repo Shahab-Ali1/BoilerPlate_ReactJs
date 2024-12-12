@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { AgGrid, GenericModal, GenericTextField } from "../SharedComponents/SharedComponents";
+import { ActionModal, AgGrid, GenericModal, GenericTextField } from "../SharedComponents/SharedComponents";
 import GenericButton from "../GenericFiles/Common/Button/Button";
 import { successToast } from '../../Utils/Toast/Toast'
+import { ModalType } from "../../Utils/Constant/Constant";
 
 const Category = () => {
     const [rowData] = useState([
@@ -26,6 +27,11 @@ const Category = () => {
         successToast("Record Saved Successfully")
         setIsOpen(true);
     }
+    const [isError, setisError] = useState(false)
+    const error = (params) => {
+        setisError(true);
+    }
+
 
     return (
         <div>
@@ -51,13 +57,17 @@ const Category = () => {
                     text="Save"
                     onClick={clickSave}
                 />
+                <GenericButton
+                    text="Error Modal"
+                    onClick={error}
+                />
             </main>
             {isOpen &&
                 <GenericModal
                     title="Basic Modal"
                     open={isOpen}
                     onCancel={() => setIsOpen(false)}
-                    height={800}
+                    height={"auto"}
                     width={800}
                 >
                     <div>
@@ -73,6 +83,15 @@ const Category = () => {
                         />
                     </div>
                 </GenericModal>
+            }
+            {isError &&
+                <ActionModal
+                    type={ModalType.confirmation}
+                    message="Error Message"
+                    open={isError}
+                    onCancel={() => setisError(false)}
+                    onOk={() => setisError(false)}
+                />
             }
         </div>
     );
