@@ -3,6 +3,7 @@ import { ActionModal, AgGrid, GenericModal, GenericTextField } from "../SharedCo
 import GenericButton from "../GenericFiles/Common/Button/Button";
 import { successToast } from '../../Utils/Toast/Toast'
 import { ModalType } from "../../Utils/Constant/Constant";
+import axios from 'axios';
 
 const Category = () => {
     const [rowData] = useState([
@@ -30,6 +31,15 @@ const Category = () => {
     const [isError, setisError] = useState(false)
     const error = (params) => {
         setisError(true);
+    }
+    const Api = () => {
+        axios.get("http://localhost:4000/api/users")
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
 
@@ -60,6 +70,10 @@ const Category = () => {
                 <GenericButton
                     text="Error Modal"
                     onClick={error}
+                />
+                <GenericButton
+                    text="Api"
+                    onClick={Api}
                 />
             </main>
             {isOpen &&
